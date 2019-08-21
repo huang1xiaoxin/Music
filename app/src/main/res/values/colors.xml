@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="Xin">#FF1B1C1E</color>
+    <color name="LineColor">#FF666C78</color>
+    <color name="TextColor">#FF272C36</color>
+    <color name="ButtonBackground">#FFF8F6F9</color>
+    <color name="ContentBackground">#FFF8F6F9</color>
+
+</resources>

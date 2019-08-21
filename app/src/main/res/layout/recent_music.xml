@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/ContentBackground"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        >
+        <TextView
+            android:id="@+id/recent_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:textSize="25sp"
+            android:textColor="@color/Xin"
+            android:text="@string/RecentPlayMusic" />
+
+        <ImageButton
+            android:id="@+id/clean_recent"
+            android:layout_width="48dp"
+            android:background="@color/ButtonBackground"
+            android:src="@drawable/cleanrecent"
+            android:layout_height="48dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginEnd="18dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="18dp" />
+
+    </RelativeLayout>
+    <TextView
+        android:background="@color/LineColor"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        />
+    <ListView
+        android:id="@+id/List_recentMusic"
+        android:divider="@color/LineColor"
+        android:dividerHeight="0.5dp"
+        android:headerDividersEnabled="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </ListView>
+
+</LinearLayout>

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">小新音乐</string>
+    <string name="mainFragment">小新音乐</string>
+    <string name="localMusic">本地音乐</string>
+    <string name="LikeMusic">我喜欢</string>
+    <string name="RecentPlay">最近播放</string>
+    <string name="RecentPlayMusic">播放记录</string>
+</resources>
