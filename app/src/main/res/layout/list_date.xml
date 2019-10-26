@@ -2,20 +2,28 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <ImageView
-        android:id="@+id/SongImage"
+    <LinearLayout
+        android:background="@color/SidBackground"
         android:layout_marginLeft="10dp"
+        android:padding="2dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="5dp"
-        android:layout_width="48dp"
-        android:layout_height="48dp" />
+        android:layout_width="50dp"
+        android:layout_height="50dp">
+        <ImageView
+            android:scaleType="fitXY"
+            android:id="@+id/SongImage"
+            android:layout_width="48dp"
+            android:layout_height="48dp" />
+    </LinearLayout>
+
     <TextView
         android:id="@+id/List_TextTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="70dp"
-        android:textSize="22sp"
+        android:textSize="18sp"
         android:textColor="@color/TextColor"
         android:layout_marginStart="70dp" />
     <TextView
@@ -23,7 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="70dp"
-        android:textSize="17sp"
+        android:textSize="14sp"
         android:layout_below="@id/List_TextTitle"
         android:layout_marginStart="70dp"
         />

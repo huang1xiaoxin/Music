@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/ContentBackground"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/ButtonBackground"
     android:layout_height="match_parent">
+    <android.support.constraint.Guideline
+        android:id="@+id/line1"
+        app:layout_constraintGuide_percent="0.2"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
+    <android.support.constraint.Guideline
+        android:id="@+id/line2"
+        app:layout_constraintGuide_percent="0.6"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
 
     <TextView
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/line1"
         android:id="@+id/ContentMusic_Text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -12,22 +29,36 @@
         android:layout_centerHorizontal="true"
         android:textColor="@color/TextColor"
         android:textSize="18sp"
-        android:textStyle="italic" />
+        tools:ignore="MissingConstraints" />
+    <LinearLayout
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/line1"
+        app:layout_constraintBottom_toTopOf="@id/line2"
+        android:padding="5dp"
+        android:background="@color/SidBackground"
+        android:layout_width="225dp"
+        android:layout_height="225dp"
+        tools:ignore="MissingConstraints">
+        <ImageView
+            android:id="@+id/content_imageView"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            android:scaleType="fitXY"
+            tools:ignore="MissingConstraints" />
 
-    <ImageView
-        android:id="@+id/content_imageView"
-        android:layout_width="220dp"
-        android:layout_height="220dp"
-        android:layout_centerInParent="true" />
+    </LinearLayout>
+
 
     <ImageButton
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp"
         android:id="@+id/add_likeMusic"
-        android:layout_width="53dp"
+        android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="35dp"
-        android:layout_toStartOf="@+id/content_imageView"
-        android:background="@color/ButtonBackground"
-        android:layout_toLeftOf="@+id/content_imageView" />
+        android:padding="3dp"
+        android:scaleType="fitXY"
+        android:background="@drawable/btn_ba"
+        tools:ignore="MissingConstraints" />
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

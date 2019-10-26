@@ -1,22 +1,29 @@
 package com.example.lenovo.music;
 
+import android.Manifest;
+import android.app.Activity;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaMetadataRetriever;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.accessibility.AccessibilityManager;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -35,7 +42,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class  MainActivity extends AppCompatActivity implements LocalMusicList.LocalMusicFragmentLister  {
+public class  MainActivity extends AppCompatActivity implements LocalMusicList.LocalMusicFragmentLister , View.OnClickListener {
 
     private MyService.MusicBinder musicBinder;
     private Bundle bundle=new Bundle();
@@ -101,13 +108,21 @@ public class  MainActivity extends AppCompatActivity implements LocalMusicList.L
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        dataDo=new DataDo(this);
+        dataDo=DataDo.getInstance(this);
         startButton=findViewById(R.id.Stop_Button);
-        startButton.setImageResource(R.drawable.startsong);
+        startButton.setImageResource(R.drawable.stopsong);
         bottomImage =findViewById(R.id.Song_image);
         bottomSinger =findViewById(R.id.singer_text);
         bottomTilde =findViewById(R.id.SongItem_text);
         playModeButton=findViewById(R.id.PlayStyle_Button);
+        findViewById(R.id.likeMusicButton2).setOnClickListener(this);
+        findViewById(R.id.recentMusicButton2).setOnClickListener(this);
+        ImageButton localButton=findViewById(R.id.localMusicButton);
+        localButton.setOnClickListener(this);
+        ImageButton likeButton=findViewById(R.id.likeMusicButton);
+        likeButton.setOnClickListener(this);
+        ImageButton recentButtom=findViewById(R.id.recentMusicButton);
+        recentButtom.setOnClickListener(this);
         maxTime=findViewById(R.id.MaxTime);
         currentTime=findViewById(R.id.CurrentTime);
         Intent intent = new Intent(this,MyService.class);
@@ -188,15 +203,49 @@ public class  MainActivity extends AppCompatActivity implements LocalMusicList.L
 
             }
         });
+        initPermission();
     }
-    public void Layout_Click(View view){
+    @Override
+    public void onClick(View v){
         if(!musicBinder.getIsMusicContentPage()){
-            switch(view.getId()){
-                case R.id.LocalMusiac_layout:
+            switch(v.getId()){
+                case R.id.localMusicButton:
                     LocalMusicList localMusicList=new LocalMusicList();
                     localMusicList.setArguments(bundle);
                     ReplaceFragment(localMusicList);
                     break;
+                case R.id.likeMusicButton:
+                    LikeMusicFragment likeMusicFragment=new LikeMusicFragment();
+                    likeMusicFragment.setArguments(bundle);
+                    ReplaceFragment(likeMusicFragment);
+                    Log.e("已导航到：","我喜欢的页面");
+                    break;
+                case R.id.recentMusicButton:
+                    RecentMusicPlay recentMusicPlay=new RecentMusicPlay();
+                    recentMusicPlay.setArguments(bundle);
+                    ReplaceFragment(recentMusicPlay);
+                    Log.e("已导航到：","最近播放页面");
+                    break;
+                case R.id.likeMusicButton2:
+                    LikeMusicFragment likeMusicFragment1=new LikeMusicFragment();
+                    likeMusicFragment1.setArguments(bundle);
+                    ReplaceFragment(likeMusicFragment1);
+                    break;
+                case R.id.recentMusicButton2:
+                    RecentMusicPlay recentMusicPlay1=new RecentMusicPlay();
+                    recentMusicPlay1.setArguments(bundle);
+                    ReplaceFragment(recentMusicPlay1);
+                   break;
+                default:
+                    break;
+            }
+        }
+
+    }
+    //底部的播放栏点击跳转到另一页面,注意要是public类型，不可以是private类型，否则调用不了
+    public void Layout_Click(View v){
+        if(!musicBinder.getIsMusicContentPage()){
+            switch (v.getId()){
                 case R.id.bottom_layout:
                     if(!musicBinder.getIsMusicContentPage()){
                         MusicContentFragment musicContentFragment =new MusicContentFragment();
@@ -206,23 +255,13 @@ public class  MainActivity extends AppCompatActivity implements LocalMusicList.L
                         return;
                     }
                     break;
-                case R.id.LikeMusiac_layout:
-                    LikeMusicFragment likeMusicFragment=new LikeMusicFragment();
-                    likeMusicFragment.setArguments(bundle);
-                    ReplaceFragment(likeMusicFragment);
-                    Log.e("已导航到：","我喜欢的页面");
-                    break;
-                case R.id.RecentPlayMusiac_layout:
-                    RecentMusicPlay recentMusicPlay=new RecentMusicPlay();
-                    recentMusicPlay.setArguments(bundle);
-                    ReplaceFragment(recentMusicPlay);
-                    Log.e("已导航到：","最近播放页面");
-                    break;
-                default:break;
+                    default: break;
+
             }
         }
-
     }
+
+
     //转换时间
     private String formatTime(int length){
         Date date=new Date(length);
@@ -286,8 +325,25 @@ public class  MainActivity extends AppCompatActivity implements LocalMusicList.L
     public Songs getSendToMusicContent(){
         return sendToMusicContent;
     }
+
+
+
     public interface MainActivityLister{
         void changeImage(Songs songs);
     }
-
+    //动态申请存储读取的权限
+    private void initPermission(){
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE )!=
+                PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this,new String[]{
+                    Manifest.permission.READ_EXTERNAL_STORAGE
+            },1);
+        }
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE )!=
+                PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this,new String[]{
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+            },1);
+        }
+    }
 }

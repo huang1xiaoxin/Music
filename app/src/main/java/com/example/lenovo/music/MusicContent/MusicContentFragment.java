@@ -37,6 +37,7 @@ public class MusicContentFragment extends Fragment implements MainActivity.MainA
         View view=inflater.inflate(R.layout.musiccontent,container,false);
         mA=(MainActivity)getActivity();
         textView=view.findViewById(R.id.ContentMusic_Text);
+        //获取musicBinder的对象
         musicBinder= (MyService.MusicBinder) getArguments().getSerializable("binder");
         assert musicBinder != null;
         musicBinder.setIsMusicContentPage(true);
@@ -44,10 +45,10 @@ public class MusicContentFragment extends Fragment implements MainActivity.MainA
         assert mA != null;
         getSongs=mA.getSendToMusicContent();
         if(getSongs!=null){
-            dataDo=new DataDo(getActivity());
+            dataDo=DataDo.getInstance(getContext());
             addLikeButton=view.findViewById(R.id.add_likeMusic);
             addLikeButton.setImageResource(R.drawable.dislike);
-            textView.setText(getSongs.getArtist());
+            textView.setText(getSongs.getTitle());
             if(!dataDo.isExist("likeMusicBook", (int) getSongs.getId())){
                 addLikeButton.setImageResource(R.drawable.addlike);
                 isAddLike =true;
@@ -56,6 +57,7 @@ public class MusicContentFragment extends Fragment implements MainActivity.MainA
             }
             musicView=view.findViewById(R.id.content_imageView);
             Log.e("getMusic:",getSongs.getUrl());
+
             if(mA.loadingCover(getSongs.getUrl())==null){
                 musicView.setImageResource(R.drawable.musicimage);
             }else {
@@ -113,6 +115,7 @@ public class MusicContentFragment extends Fragment implements MainActivity.MainA
         musicBinder.setIsMusicContentPage(false);
         super.onDestroyView();
     }
+    //获取本地歌曲的图片，通过传入歌曲的本地地址
     public Bitmap loadingImage(String mediaUri){
         Bitmap bitmap=null;
         try {

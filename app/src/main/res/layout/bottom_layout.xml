@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_alignParentBottom="true"
     android:layout_width="match_parent"
-    android:background="@color/ContentBackground"
     android:id="@+id/Navigation"
+    android:background="@color/ButtonBackground"
     android:layout_height="120dp">
     <SeekBar
         android:id="@+id/SeekBar"
@@ -25,14 +25,23 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:focusable="true">
-
-        <ImageView
-            android:id="@+id/Song_image"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+        <LinearLayout
+            android:padding="3dp"
             android:layout_marginLeft="10dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:layout_width="50dp"
+            android:background="@color/SidBackground"
+            android:layout_height="50dp">
+            <ImageView
+                android:scaleType="fitXY"
+                android:id="@+id/Song_image"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                />
+        </LinearLayout>
+
 
         <TextView
             android:id="@+id/SongItem_text"
@@ -42,7 +51,7 @@
             android:layout_marginStart="70dp"
             android:hint="歌名"
             android:textColor="@color/TextColor"
-            android:textSize="15sp"
+            android:textSize="14sp"
             tools:ignore="HardcodedText" />
 
         <TextView
@@ -57,19 +66,22 @@
             tools:ignore="HardcodedText" />
 
         <ImageButton
-
-            android:background="@color/ButtonBackground"
+            android:padding="2dp"
+            android:background="@drawable/btn_ba"
             android:id="@+id/Before_Button"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:src="@drawable/lastsong"
+            android:scaleType="fitXY"
             android:layout_marginLeft="130dp"
             android:layout_marginStart="130dp"
             android:layout_centerVertical="true"
             />
         <ImageButton
+            android:padding="2dp"
+            android:background="@drawable/btn_ba"
+            android:scaleType="fitXY"
             android:layout_marginLeft="10dp"
-            android:background="@color/ButtonBackground"
             android:id="@+id/Stop_Button"
             android:layout_width="48dp"
             android:layout_height="48dp"
@@ -78,8 +90,10 @@
             android:layout_toEndOf="@id/Before_Button"
             android:layout_marginStart="10dp" />
         <ImageButton
+            android:padding="2dp"
+            android:background="@drawable/btn_ba"
+            android:scaleType="fitXY"
             android:layout_marginLeft="10dp"
-            android:background="@color/ButtonBackground"
             android:id="@+id/NextSong_Button"
             android:layout_width="48dp"
             android:layout_height="48dp"
@@ -89,7 +103,9 @@
             android:layout_toEndOf="@+id/Stop_Button"
             android:layout_marginStart="10dp" />
         <ImageButton
-            android:background="@color/ButtonBackground"
+            android:padding="2dp"
+            android:background="@drawable/btn_ba"
+            android:scaleType="fitXY"
             android:id="@+id/PlayStyle_Button"
             android:layout_marginLeft="10dp"
             android:layout_width="43dp"

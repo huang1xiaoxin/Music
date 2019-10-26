@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="@color/ContentBackground"
+    android:background="@color/ButtonBackground"
     android:layout_height="match_parent">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -14,14 +14,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:textSize="25sp"
-            android:textColor="@color/Xin"
+            android:textSize="18sp"
+            android:textColor="@color/TextColor"
             android:text="@string/RecentPlayMusic" />
 
         <ImageButton
+            android:padding="3dp"
+            android:scaleType="fitXY"
             android:id="@+id/clean_recent"
             android:layout_width="48dp"
-            android:background="@color/ButtonBackground"
+            android:background="@drawable/btn_ba"
             android:src="@drawable/cleanrecent"
             android:layout_height="48dp"
             android:layout_alignParentEnd="true"

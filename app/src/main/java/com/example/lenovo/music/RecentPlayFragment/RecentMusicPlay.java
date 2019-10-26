@@ -39,7 +39,7 @@ public class RecentMusicPlay extends Fragment {
         cleanButton=view.findViewById(R.id.clean_recent);
         mA= (MainActivity) getActivity();
         musicBinder= (MyService.MusicBinder) getArguments().getSerializable("binder");
-        dataDo=new DataDo(getActivity());
+        dataDo=DataDo.getInstance(getContext());
         arrayList=dataDo.getDataSongs("recent");
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

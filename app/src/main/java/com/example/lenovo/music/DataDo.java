@@ -14,8 +14,9 @@ public class DataDo {
     private Context context;
     private MyDatabaseHelper myDatabaseHelper;
     private SQLiteDatabase database;
+    private static  DataDo dataDo;
     public  static  final  String Name="musicData.db";
-    public  DataDo(Context context){
+    private DataDo(Context context){
         this.context=context;
         myDatabaseHelper=new MyDatabaseHelper(context,Name,null,2);
         database=myDatabaseHelper.getWritableDatabase();
@@ -91,6 +92,13 @@ public class DataDo {
         database.execSQL("update sqlite_sequence SET seq = 0 where name ='"+tableName+"';");
         Log.e("已清除：","所有的数据");
 
+    }
+    //单例模式，提供给使用者
+    public static DataDo getInstance(Context context){
+        if (dataDo==null){
+            dataDo=new DataDo(context);
+        }
+        return dataDo;
     }
 
 }

@@ -6,8 +6,8 @@ android {
         applicationId "com.example.lenovo.music"
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        versionCode 5
+        versionName "5.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -15,6 +15,12 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    android.applicationVariants.all{
+        variant ->
+            variant.outputs.all{
+                outputFileName="MusicPlayer.apk"
+            }
     }
 }
 

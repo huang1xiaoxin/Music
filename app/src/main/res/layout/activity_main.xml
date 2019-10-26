@@ -3,10 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity">
+    <!--
+
     <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
         <include layout="@layout/content_layout" />
         <include layout="@layout/bottom_layout" />
         <FrameLayout
@@ -14,11 +18,261 @@
             android:layout_width="match_parent"
             android:layout_height="400dp">
         </FrameLayout>
+    </RelativeLayout>
+    -->
+    <RelativeLayout
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/layout_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="MissingConstraints">
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.support.constraint.Guideline
+                android:id="@+id/RYG1"
+                app:layout_constraintGuide_percent="0.05"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+            <TextView
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:textColor="@color/TextColor"
+                android:text="本地音乐播放器"
+                android:textSize="23sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <android.support.constraint.Guideline
+                android:id="@+id/RYG2"
+                app:layout_constraintGuide_percent="0.25"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+            <android.support.constraint.Guideline
+                android:id="@+id/RYG3"
+                app:layout_constraintGuide_percent="0.4"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+            <android.support.constraint.Guideline
+                android:id="@+id/RYG4"
+                app:layout_constraintGuide_percent="0.6"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+            <android.support.constraint.Guideline
+                android:id="@+id/RYG5"
+                app:layout_constraintGuide_percent="0.8"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+            <android.support.constraint.Guideline
+                android:id="@+id/RYV1"
+                app:layout_constraintGuide_percent="0.33"
+                android:orientation="vertical"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"/>
+            <android.support.constraint.Guideline
+                android:id="@+id/RYV2"
+                app:layout_constraintGuide_percent="0.66"
+                android:orientation="vertical"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"/>
+            <LinearLayout
+            android:background="@color/SidBackground"
+            app:layout_constraintBottom_toTopOf="@id/RYG2"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"/>
+            <LinearLayout
+                android:background="@color/SidBackground"
+                app:layout_constraintBottom_toTopOf="@id/RYG3"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"/>
+            <LinearLayout
+                android:background="@color/SidBackground"
+                app:layout_constraintBottom_toTopOf="@id/RYG4"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"/>
+            <ImageView
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/RYG1"
+                app:layout_constraintBottom_toTopOf="@+id/RYG2"
+                android:src="@drawable/musiccover"
+                android:scaleType="fitXY"
+                android:layout_width="300dp"
+                android:layout_height="120dp"/>
 
+            <ImageButton
+                android:id="@+id/localMusicButton"
+                android:src="@drawable/localmusic"
+                android:background="@drawable/btn_ba"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/RYV1"
+                app:layout_constraintTop_toBottomOf="@id/RYG2"
+                android:padding="3dp"
+                android:scaleType="fitXY"
+                android:layout_width="60dp"
+                android:layout_height="60dp"/>
+            <ImageButton
+                android:id="@+id/likeMusicButton"
+                android:src="@drawable/likemusic"
+                android:background="@drawable/btn_ba"
+                app:layout_constraintLeft_toLeftOf="@id/RYV1"
+                app:layout_constraintRight_toLeftOf="@id/RYV2"
+                app:layout_constraintTop_toBottomOf="@id/RYG2"
+                android:padding="3dp"
+                android:scaleType="fitXY"
+                android:layout_width="60dp"
+                android:layout_height="60dp"/>
+            <ImageButton
+                android:id="@+id/recentMusicButton"
+                android:src="@drawable/recentlymusic"
+                android:background="@drawable/btn_ba"
+                app:layout_constraintLeft_toRightOf="@id/RYV2"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/RYG2"
+                android:padding="3dp"
+                android:scaleType="fitXY"
+                android:layout_width="60dp"
+                android:layout_height="60dp"/>
+            <TextView
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/RYV1"
+                app:layout_constraintTop_toBottomOf="@+id/localMusicButton"
+                android:textSize="18sp"
+                android:text="@string/localMusic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:text="@string/LikeMusic"
+                app:layout_constraintLeft_toLeftOf="@id/RYV1"
+                app:layout_constraintRight_toLeftOf="@id/RYV2"
+                app:layout_constraintTop_toBottomOf="@id/likeMusicButton"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:text="@string/RecentPlay"
+                app:layout_constraintLeft_toRightOf="@id/RYV2"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recentMusicButton"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <TextView
+                android:id="@+id/likegedan"
+                app:layout_constraintTop_toBottomOf="@id/RYG3"
+                android:textColor="@color/TextColor"
+                android:textSize="18sp"
+                android:text="我喜欢歌单"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <Button
+                app:layout_constraintTop_toBottomOf="@id/RYG3"
+                app:layout_constraintRight_toRightOf="parent"
+                android:background="@drawable/bt"
+                android:id="@+id/likeMusicButton2"
+                android:padding="1dp"
+                android:textSize="12sp"
+                android:text="更多"
+                android:layout_width="50dp"
+                android:layout_height="20dp"/>
+            <LinearLayout
+                app:layout_constraintTop_toBottomOf="@+id/likegedan"
+                android:padding="3dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/RYG4"
+                android:background="@color/SidBackground"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:src="@drawable/i1"
+                    android:scaleType="fitXY"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"/>
+                <ImageView
+                    android:src="@drawable/i2"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="3dp"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_marginStart="3dp" />
+                <ImageView
+                    android:src="@drawable/i3"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="3dp"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_marginStart="3dp" />
+            </LinearLayout>
+            <TextView
+                app:layout_constraintTop_toBottomOf="@id/RYG4"
+                android:textColor="@color/TextColor"
+                android:textSize="18sp"
+                android:text="最近播放歌单"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+            <Button
+                app:layout_constraintTop_toBottomOf="@id/RYG4"
+                app:layout_constraintRight_toRightOf="parent"
+                android:background="@drawable/bt"
+                android:id="@+id/recentMusicButton2"
+                android:padding="1dp"
+                android:textSize="12sp"
+                android:text="更多"
+                android:layout_width="50dp"
+                android:layout_height="20dp"/>
+            <LinearLayout
+                app:layout_constraintBottom_toTopOf="@id/RYG5"
+                app:layout_constraintTop_toBottomOf="@+id/recentMusicButton2"
+                android:padding="3dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:background="@color/SidBackground"
+                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:src="@drawable/i6"
+                    android:scaleType="fitXY"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"/>
+                <ImageView
+                    android:src="@drawable/i4"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="3dp"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_marginStart="3dp" />
+                <ImageView
+                    android:src="@drawable/i5"
+                    android:scaleType="fitXY"
+                    android:layout_marginLeft="3dp"
+                    android:layout_width="90dp"
+                    android:layout_height="90dp"
+                    android:layout_marginStart="3dp" />
+            </LinearLayout>
 
-
+        </android.support.constraint.ConstraintLayout>
+        <FrameLayout
+            android:id="@+id/MusicList_Fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </FrameLayout>
     </RelativeLayout>
 
+    <LinearLayout
+        android:id="@+id/layout_bottom"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+        <include layout="@layout/bottom_layout" />
+    </LinearLayout>
 
 
 

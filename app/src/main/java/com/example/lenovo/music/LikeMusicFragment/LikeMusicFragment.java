@@ -34,7 +34,7 @@ public class LikeMusicFragment extends Fragment  {
         listView=view.findViewById(R.id.List_music);
         musicBinder = (MyService.MusicBinder) getArguments().getSerializable("binder");
         mA= (MainActivity) getActivity();
-        DataDo dataDo=new DataDo(getActivity());
+        DataDo dataDo=DataDo.getInstance(getContext());
         if(songsList!=null){
             songsList.clear();
         }
